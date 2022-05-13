@@ -15,16 +15,23 @@ aside {
   width: 18.75rem;
   height: 100vh;
 }
-
-.container {
+.form{
+  display: flex;
+  flex-direction: column;
+  margin: 0 61px;
+}
+.container-navbar{
   margin: 4.5rem 1.4rem;
+}
+.navbar{
+  position: fixed;
 }
 
 .btn-container {
   position: fixed;
 }
 
-.container a {
+.container-navbar a {
   color: #f9fafb;
   text-decoration: none;
   font-size: 1.75rem;
@@ -39,6 +46,11 @@ button {
   border: none;
   padding: 0.5rem 1rem;
   background-color: #f9fafb;
+}
+
+.logout-btn{
+  display: flex;
+  justify-content: flex-end;
 }
 
 

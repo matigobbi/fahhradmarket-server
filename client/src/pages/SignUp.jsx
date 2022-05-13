@@ -6,15 +6,17 @@ const API_URL = "http://localhost:5005";
 export default function Signup() {
 
 	const [name, setName] = useState('');
+	const [birth, setBirth] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [country, setCountry] = useState('');
 	const [errorMessage, setErrorMessage] = useState(undefined);
 
 	const navigate = useNavigate()
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		const requestBody = { email, password, name }
+		const requestBody = { email, password, name, birth, country }
 		axios.post(`${API_URL}/auth/signup`, requestBody)
 			.then(response => {
 				// redirect to login
@@ -29,12 +31,14 @@ export default function Signup() {
 	const handleEmail = e => setEmail(e.target.value)
 	const handleName = e => setName(e.target.value)
 	const handlePassword = e => setPassword(e.target.value)
+	const handleBirth = e => setBirth(e.target.value)
+	const handleCountry = e => setCountry(e.target.value)
 
 
 	return (
 		<>
-			<h1>Signup</h1>
-			<form onSubmit={handleSubmit}>
+			
+			<form className="form" onSubmit={handleSubmit}>
 
 				<label htmlFor="email">Email: </label>
 				<input type="text" value={email} onChange={handleEmail} />
@@ -44,6 +48,12 @@ export default function Signup() {
 
 				<label htmlFor="name">Name: </label>
 				<input type="text" value={name} onChange={handleName} />
+
+				<label htmlFor="birth">Date of birthday: </label>
+				<input type="date" value={birth} onChange={handleBirth} />
+
+				<label htmlFor="country">Country: </label>
+				<input type="text" value={country} onChange={handleCountry} />
 
 				<button type="submit">Sign Up</button>
 			</form>

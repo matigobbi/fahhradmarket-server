@@ -7,10 +7,10 @@ import { AuthContext } from "../context/auth.context";
 
 
 const links =   [
-  { name: "Home", to: "/App", id: 1 },
-  { name: "Log In ", to: "/LogIn", id: 2 },
-  { name: "Sign Up", to: "/SignUp", id: 3 },
-  { name: "Create a Post", to: "/Create", id: 4 }
+  { name: "Home", to: "/", id: 1 ,displayLogged: "y"},
+  { name: "Log In ", to: "/LogIn", id: 2 ,displayLogged: "n"},
+  { name: "Sign Up", to: "/SignUp", id: 3 ,displayLogged: "n"},
+  { name: "Create a Post", to: "/CreatePost", id: 4 ,displayLogged: "y"},
 ];
 const itemVariants = {
   closed: {
@@ -33,9 +33,10 @@ const sideVariants = {
   }
 };
 export default function NavBar() {
+const { isLoggedIn, logoutUser  } = useContext(AuthContext); 
     const [open, cycleOpen] = useCycle(false, true);
   return (
-    <main>
+    <main className="navbar">
       <AnimatePresence>
         {open && (
           <motion.aside
@@ -49,17 +50,22 @@ export default function NavBar() {
             }}
           >
             <motion.div
-              className="container"
+              className="container-navbar"
               initial="closed"
               animate="open"
               exit="closed"
               variants={sideVariants}
             >
-              {links.map(({ name, to, id }) => (
+              {links
+                .filter(link => {
+                if(isLoggedIn === true){return link.displayLogged.includes("y")}
+                else{return link}
+              })
+                .map(({ name, to, id }) => (
                 <motion.a
                   key={id}
                   href={to}
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.05 }}
                   variants={itemVariants}
                 >
                   {name}

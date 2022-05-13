@@ -41,8 +41,8 @@ export default function Login() {
 
 	return (
 		<>
-			<h1>Login</h1>
-			<form onSubmit={handleSubmit}>
+			
+			<form className="form" onSubmit={handleSubmit}>
 
 				<label htmlFor="email">Email: </label>
 				<input type="text" value={email} onChange={handleEmail} />
