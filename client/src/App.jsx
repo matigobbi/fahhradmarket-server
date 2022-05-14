@@ -12,9 +12,8 @@ function App() {
   const { isLoggedIn, logoutUser } = useContext(AuthContext)
   return (<>
       <Navbar/>
-      {isLoggedIn ? (<> <div className="logout-btn">
-    <button  onClick={logoutUser}>Log out</button>
-    </div> </>):(<></>)}
+      {isLoggedIn ? (<p className="logout-btn">
+    <button  onClick={logoutUser}>Log out</button> </p>):(<></>)}
       <Routes>
         <Route exact path="/" element={<HomePage />} /> 
         <Route exact path="/LogIn" element={<LogIn />} />

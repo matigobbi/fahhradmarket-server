@@ -6,6 +6,7 @@ import service from "../service";
  
 function CreatePost (){
   const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [type, setType] = useState("");
@@ -39,12 +40,13 @@ function CreatePost (){
     e.preventDefault();
  
     service
-      .createPost({ title, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
+      .createPost({ title,price, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
       .then(res => {
         // console.log("added new movie: ", res);
  
         // Reset the form
         setTitle("");
+        setPrice("");
         setDescription("");
         setImageUrl("");
         setType("");
@@ -68,6 +70,9 @@ function CreatePost (){
         <label>Title *</label>
         <input type="text" name="title" value={title} 
           onChange={(e) => setTitle(e.target.value)}/>
+        <label>Price *</label>
+        <input type="number" min="0.00" max="10000.00" step="5" name="price" value={price} 
+          onChange={(e) => setPrice(e.target.value)}/>
 
         <label htmlFor="type">Type of bike:</label>
 

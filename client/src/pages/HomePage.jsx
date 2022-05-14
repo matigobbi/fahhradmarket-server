@@ -10,17 +10,31 @@ export default function HomePage(props) {
 	const getAllPosts = () => {
 		axios.get(`${API_URL}/posts`)
 			.then(response => {
-				// console.log(response)
+				//  console.log(response)
 				setPosts(response.data)
 			})
 			.catch(err => console.log(err))
 	}
 	useEffect(() => {
 		getAllPosts()
-        console.log(Posts)
 	}, []);
 
     return <>
-        {Posts ? <>Loading</> : <> true</>} 
+	    { console.log(Posts)}
+        {!Posts ? (<>Loading...</>) : 
+		(<div className="postCards"> {Posts.map((post)=>(
+			<li className='postItem'>
+				<div class="post">
+					<img className="imgPost" src={post.imageUrl}/>
+					<div className='postContent'>
+						<p className='postTitle'>{post.title}</p>
+						<p className='postPrice'>€ {post.price}</p>
+					</div>
+				</div>
+			</li>
+		))} 
+		</div>
+		)}
     </>
+		
 };

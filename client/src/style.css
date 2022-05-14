@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+
 body {
   background-color: whitesmoke;
   font-family: "Roboto", sans-serif;
@@ -14,6 +12,58 @@ aside {
   background-color: #8fe79b;
   width: 18.75rem;
   height: 100vh;
+}
+.postCards{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.postItem {
+  display: flex;
+  padding: 1rem;
+  @media(min-width: 40rem) {
+    width: 50%;
+  }
+  @media(min-width: 56rem) {
+    width: 33%;
+  }
+}
+
+.post {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.imgPost{
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.postTitle {
+  color: #273329;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.postPrice {
+  color: green;
+  flex: 1 1 auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+.postContent{
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 1rem;
 }
 .form{
   display: flex;
@@ -37,7 +87,7 @@ aside {
   font-size: 1.75rem;
   font-weight: 600;
   display: block;
-  margin: 20px;
+  margin: 10px;
 }
 
 button {
@@ -45,7 +95,10 @@ button {
   margin: 1.25rem;
   border: none;
   padding: 0.5rem 1rem;
-  background-color: #f9fafb;
+  background-color: #b6e998;
+  border-radius: 10px;
+  border-color: #99ffaa;
+  border-style:hidden;
 }
 
 .logout-btn{

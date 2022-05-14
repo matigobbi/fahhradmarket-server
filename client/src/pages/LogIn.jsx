@@ -51,12 +51,12 @@ export default function Login() {
 				<input type="password" value={password} onChange={handlePassword} />
 
 				<button type="submit">Log In</button>
-			</form>
 
 			{errorMessage && <h5>{errorMessage}</h5>}
 
 			<h3>Don't have an account?</h3>
-			<Link to='/signup'>Signup</Link>
+			<Link to='/signup'> <button>Signup</button></Link>
+			</form>
 		</>
 	)
 }
