@@ -1,4 +1,10 @@
 
+*,
+*::before,
+*::after { 
+  box-sizing: border-box;
+}
+
 body {
   background-color: whitesmoke;
   font-family: "Roboto", sans-serif;
@@ -13,6 +19,14 @@ aside {
   width: 18.75rem;
   height: 100vh;
 }
+.search-field {
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+}
+
 .postCards{
   display: flex;
   flex-wrap: wrap;
@@ -24,11 +38,21 @@ aside {
 .postItem {
   display: flex;
   padding: 1rem;
-  @media(min-width: 40rem) {
+}
+.postItemDetail {
+  display: flex;
+  padding: 1rem ;
+}
+
+
+@media screen and (min-width: 40rem) {
+  .postItem {
     width: 50%;
   }
-  @media(min-width: 56rem) {
-    width: 33%;
+}
+@media screen and (min-width: 56rem){
+  .postItem {
+    width: 33.3333%;
   }
 }
 
@@ -99,6 +123,10 @@ button {
   border-radius: 10px;
   border-color: #99ffaa;
   border-style:hidden;
+}
+
+.searchButtons{
+  margin: 0.25em;
 }
 
 .logout-btn{

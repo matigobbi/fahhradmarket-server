@@ -88,7 +88,7 @@ function CreatePost (){
           
         <label>Frame Size</label>
         <select id="framesize" name="framesize" value={framesize} 
-          onChange={(e) => setType(e.target.value)}>
+          onChange={(e) => setFramesize(e.target.value)}>
         <option value="-38">-38cms (xxs)</option>
         <option value="38-40">38 - 40cms (xxs)</option>
         <option value="40-42">40 - 42cms (xxs)</option>

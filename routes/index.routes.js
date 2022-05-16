@@ -16,6 +16,11 @@ router.get("/posts", (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.get("/:id", (req, res , next) => {
+  Post.find()
+} 
+)
+
 router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
   // console.log("file is: ", req.file)
  
@@ -32,11 +37,13 @@ router.post('/posts', (req, res, next) => {
  
   Post.create(req.body)
     .then(createdPost => {
-       console.log('Created new movie: ', createdPost);
+       console.log('Created new post: ', createdPost);
       res.status(200).json(createdPost);
     })
     .catch(err => next(err));
 });
+
+
 
 
 
