@@ -10,14 +10,14 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { AuthContext } from './context/auth.context' 
 import './style.css'
-const API_URL = "http://localhost:5005";
+
 
 function App() {
   const { isLoggedIn, logoutUser, user } = useContext(AuthContext)
   const [Posts, setPosts] = useState([])
 
 	const getAllPosts = () => {
-		axios.get(`${API_URL}/posts`)
+		axios.get(`/posts`)
 			.then(response => {
 				//  console.log(response)
 				setPosts(response.data)

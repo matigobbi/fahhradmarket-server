@@ -3,7 +3,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context"
 import { Link, Navigate } from "react-router-dom"
-const API_URL = "http://localhost:5005";
+
 
 
 export default function HomePage(props) {
@@ -25,7 +25,7 @@ export default function HomePage(props) {
 		const foundedPost = props.posts.find(post => post._id === postId)
 		props.user && foundedPost.likes.push(`${props.user._id}`)
 		const requestBody= foundedPost.likes
-		axios.put(`${API_URL}/${postId}/addlike`, requestBody)
+		axios.put(`/${postId}/addlike`, requestBody)
 							.then(()=> {
 
 							})
@@ -70,6 +70,7 @@ export default function HomePage(props) {
 				<Link to={post._id}> <img className="imgPost" src={post.imageUrl}/> </Link>
 					<div className="postContent">
 						<p className="postTitle">{post.title}</p>
+						<p className="postdress"> {post.zipcode}, {post.city}</p>
 						<div className="pricenAndLike">
 							<p className="postPrice">€ {post.price}</p>
 							<button className="likeButton" onClick={() => handlePushLike(post._id)}> ❤</button>
