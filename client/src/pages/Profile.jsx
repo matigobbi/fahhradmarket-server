@@ -2,7 +2,7 @@ import { AuthContext } from '../context/auth.context'
 import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+const API_URL = "http://localhost:5005";
 
 export default function Profile(props) {
 

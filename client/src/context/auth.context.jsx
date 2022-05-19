@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const AuthContext = React.createContext()
-
+const API_URL = "http://localhost:5005";
 
 function AuthProviderWrapper(props) {
 	const [user, setUser] = useState(null)

@@ -10,7 +10,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { AuthContext } from './context/auth.context' 
 import './style.css'
-
+const API_URL = "http://localhost:5005";
 
 function App() {
   const { isLoggedIn, logoutUser, user } = useContext(AuthContext)
