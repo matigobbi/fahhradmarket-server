@@ -21,7 +21,7 @@ const auth = require("./routes/auth");
 app.use("/auth", auth);
 
 const path = require('path');
-app.use(express.static(path.join(__dirname, "/dist/build")));
+app.use(express.static(path.join(__dirname, "/client/dist")));
 
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
