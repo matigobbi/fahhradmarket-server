@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import { AuthContext } from '../context/auth.context' 
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
  
 // import the service file since we need it to send (and get) the data to(from) the server
 import service from "../service";
  
-function CreatePost (){
+function CreatePost (props){
+  const navigate = useNavigate()
+  const owner = (props.user? props.user._id : "")
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -40,7 +45,7 @@ function CreatePost (){
     e.preventDefault();
  
     service
-      .createPost({ title,price, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
+      .createPost({ owner, title, price, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
       .then(res => {
         // console.log("added new movie: ", res);
  
@@ -57,16 +62,14 @@ function CreatePost (){
         setYears("");
         setZipcode("");
         setCity("Berlin");
-      
-        // here you would redirect to some other page      
+        navigate('/') 
       })
       .catch(err => console.log("Error while adding the new movie: ", err));
   };
  
-  return (
-    <div >
-
-        <form className="form" onSubmit={handleSubmit}>
+  return ( <>{props.user? (
+    <div>
+      <form className="form" onSubmit={handleSubmit}>
         <label>Title *</label>
         <input type="text" name="title" value={title} 
           onChange={(e) => setTitle(e.target.value)}/>
@@ -112,27 +115,28 @@ function CreatePost (){
         <option value="carbon">Carbon</option>
         <option value="titanium/magnesium">Titanum/magnesium</option>
         </select>      
-
-        <label>Brakes</label>
-        <input type="text" name="brakes" value={brakes} 
-          onChange={(e) => setBrakes(e.target.value)}/>
-
-        <label>Tubes</label>
-        <input type="tubes" name="tubes" value={tubes} 
-          onChange={(e) => setTubes(e.target.value)}/>
-
-        <label>Years Old</label>
-        <input type="years" name="years" value={years} 
-          onChange={(e) => setYears(e.target.value)}/>
-
-        <label>Zip Code</label>
-        <input type="zipcode" name="zipcode" value={zipcode} 
-          onChange={(e) => setZipcode(e.target.value)}/>
-
-        <label>City</label>
-        <input type="city" name="city" value={city} 
-          onChange={(e) => setCity(e.target.value)}/>   
- 
+        <div className='formAgrup'>
+          <label>Brakes
+            <input type="text" name="brakes" value={brakes} 
+              onChange={(e) => setBrakes(e.target.value)}/>
+          </label>
+          <label>Tubes
+            <input type="tubes" name="tubes" value={tubes} 
+              onChange={(e) => setTubes(e.target.value)}/>
+          </label>
+          <label>Years Old
+            <input type="years" name="years" value={years} 
+              onChange={(e) => setYears(e.target.value)}/>
+          </label>
+          <label>Zip Code
+          <input type="zipcode" name="zipcode" value={zipcode} 
+            onChange={(e) => setZipcode(e.target.value)}/>
+          </label>
+          <label>City
+          <input type="city" name="city" value={city} 
+            onChange={(e) => setCity(e.target.value)}/>   
+          </label>
+        </div>
         <label>Description *</label>
         <textarea type="text" name="description" value={description}
           onChange={(e) => setDescription(e.target.value)} />
@@ -144,7 +148,8 @@ function CreatePost (){
  
         <button type="submit">Create new Post</button>
       </form>
-    </div>
+    </div>) : (<> This page is only for Logged in users ¯\_(ツ)_/¯</>)}
+    </>
   );
 }
  

@@ -7,15 +7,45 @@
 
 body {
   background-color: whitesmoke;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 main {
   display: flex;
 }
+.topBarHomePage{
+display: flex;
+justify-content: flex-end;  
+text-align: center;
+margin-bottom: 5px;
+padding-top: 20px;
+vertical-align: middle;
+gap: 15px;
+border-radius: 25px;
+}
+.titleTopBar{
+  color: #F0FDF0;
+}
+.bg-green {
+  color: #fff;
+  background: -webkit-linear-gradient(110deg, #739A77 40%, rgba(0, 0, 0, 0) 30%), -webkit-radial-gradient(farthest-corner at 0% 0%, #68EDCB 10%, #29A89E 70%);
+  background: -o-linear-gradient(110deg, #739A77 40%, rgba(0, 0, 0, 0) 30%), -o-radial-gradient(farthest-corner at 0% 0%, #68EDCB 10%, #29A89E 70%);
+  background: -moz-linear-gradient(110deg, #739A77 40%, rgba(0, 0, 0, 0) 30%), -moz-radial-gradient(farthest-corner at 0% 0%, #68EDCB 70%, #29A89E 70%);
+  background: linear-gradient(110deg, #739A77 10%, rgba(255, 18, 18, 0) 40%), radial-gradient(farthest-corner at 0% 0%, #68EDCB 50%, #8FE79B 70%);
+}
+.greeting{
+  align-self: center;
+  border: 1px;
+  border-color: #8fe79b;
+  border-radius: 5px;
+  margin-right: -20px;
+  margin-left: 40px;
+}
+  
 
 aside {
-  background-color: #8fe79b;
+  background-color: #52b46b;
+  border-radius: 10px;
   width: 18.75rem;
   height: 100vh;
 }
@@ -39,11 +69,48 @@ aside {
   display: flex;
   padding: 1rem;
 }
-.postItemDetail {
+.containerItemDetail {
   display: flex;
   padding: 1rem ;
+position: absolute;
+width: 50%;
+left: 25%;
 }
-
+.containerInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  gap: 30px;
+}
+.containerInfo.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  gap: 30px;
+}
+.containerProfile{
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap:wrap;
+  gap: 70px;
+}
+.itemProfile{
+  background-color: #53a149;
+  text-decoration: none;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  border-radius: 10px;
+  padding: 6px 20px;
+  
+}
+@media screen and (max-width:45rem){
+  .containerItemDetail{
+    width: 100%;
+  left: 0%;
+  }
+}
 
 @media screen and (min-width: 40rem) {
   .postItem {
@@ -52,8 +119,12 @@ aside {
 }
 @media screen and (min-width: 56rem){
   .postItem {
-    width: 33.3333%;
+    width: 25%;
   }
+}
+.pricenAndLike{
+  display: flex;
+  flex-direction: row;
 }
 
 .post {
@@ -72,14 +143,14 @@ aside {
 }
 .postTitle {
   color: #273329;
-  font-size: 1rem;
-  font-weight: 100;
+  font-size: 1.1rem;
+  font-weight: 100px;
 }
 
 .postPrice {
   color: green;
   flex: 1 1 auto;
-  font-size: 0.875rem;
+  font-size: 1.475rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
 }
@@ -94,6 +165,43 @@ aside {
   flex-direction: column;
   margin: 0 61px;
 }
+textarea{
+  border:none;
+padding: 10px;
+font-size: 20px;
+color: rgb(40, 92, 25);
+border-radius: 10px;
+background-color: rgb(100, 204, 100);
+transition: all 0.1s;
+}
+
+select {
+border:none;
+padding: 10px;
+font-size: 20px;
+color: rgb(40, 92, 25);
+border-radius: 10px;
+background-color: rgb(100, 204, 100);
+transition: all 0.1s;
+}
+.form input{
+border:none;
+padding: 10px;
+font-size: 19px;
+color: rgb(40, 92, 25);
+border-radius: 10px;
+background-color: rgb(100, 204, 100);
+transition: all 0.5s;
+
+}
+.form input:focus {
+  outline: none;
+  box-shadow: 2px 4px 9px 0px rgb(23 53 15 / 63%);
+}
+button.logInButton{
+  margin: 30px 0;
+}
+
 .container-navbar{
   margin: 4.5rem 1.4rem;
 }
@@ -104,6 +212,11 @@ aside {
 .btn-container {
   position: fixed;
 }
+.formAgrup{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 
 .container-navbar a {
   color: #f9fafb;
@@ -111,7 +224,7 @@ aside {
   font-size: 1.75rem;
   font-weight: 600;
   display: block;
-  margin: 10px;
+  margin: 8px;
 }
 
 button {
@@ -121,19 +234,29 @@ button {
   padding: 0.5rem 1rem;
   background-color: #b6e998;
   border-radius: 10px;
-  border-color: #99ffaa;
   border-style:hidden;
+}
+button:hover{
+  background-color: #a1cf86;
 }
 
 .searchButtons{
   margin: 0.25em;
 }
+.searchButtons:focus{
+  background-color: #739A77;
+}
 
-.logout-btn{
-  display: flex;
-  justify-content: flex-end;
+.loginButton{
+  align-items: center;
+  margin-top: 32px;
 }
 
 
-
-
+.linksProfile{
+  text-decoration: none;
+  color: black;
+}
+.linksProfile:hover{
+color: #00A5D9;
+}

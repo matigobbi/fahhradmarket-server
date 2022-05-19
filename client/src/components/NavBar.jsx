@@ -7,10 +7,11 @@ import { AuthContext } from "../context/auth.context";
 
 
 const links =   [
-  { name: "Home", to: "/", id: 1 ,displayLogged: "y"},
-  { name: "Log In ", to: "/LogIn", id: 2 ,displayLogged: "n"},
-  { name: "Sign Up", to: "/SignUp", id: 3 ,displayLogged: "n"},
-  { name: "Create a Post", to: "/CreatePost", id: 4 ,displayLogged: "y"},
+  { name: "Home", to: "/", id: 1 ,displayNotLogged: "y"},
+  { name: "Log In ", to: "/LogIn", id: 2 ,displayNotLogged: "n"},
+  { name: "Sign Up", to: "/SignUp", id: 3 ,displayNotLogged: "n"},
+  { name: "Create a Post", to: "/CreatePost", id: 4 ,displayNotLogged: "y"},
+  { name: "My profile", to: "/Profile", id: 5, displayNotLogged: "y"},
 ];
 const itemVariants = {
   closed: {
@@ -58,7 +59,7 @@ const { isLoggedIn, logoutUser  } = useContext(AuthContext);
             >
               {links
                 .filter(link => {
-                if(isLoggedIn === true){return link.displayLogged.includes("y")}
+                if(isLoggedIn === true){return link.displayNotLogged.includes("y")}
                 else{return link}
               })
                 .map(({ name, to, id }) => (

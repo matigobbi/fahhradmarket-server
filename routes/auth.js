@@ -1,7 +1,8 @@
 const router = require("express").Router();
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const User = require('../models/User.model')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { isAuthenticated } = require('../middleware/jwt');
+const User = require('../models/User.model');
 
 router.post('/signup', (req, res, next) => {
 	const { email, password, name, birth, country } = req.body
@@ -54,8 +55,10 @@ router.post('/login', (req, res, next) => {
 			const passwordCorrect = bcrypt.compareSync(password, foundUser.password)
 			if (passwordCorrect) {
 				const { _id, email, name, birth, country } = foundUser
+				console.log(`found user: ${foundUser}`)
 				const payload = { _id, email, name, birth, country }
 				// create the json web token
+				console.log(payload)
 				const authToken = jwt.sign(
 					payload,
 					process.env.JWT_SECRET,
@@ -72,7 +75,7 @@ router.post('/login', (req, res, next) => {
 		})
 });
 
-router.get('/verify', (req, res, next) => {
+router.get('/verify', isAuthenticated, (req, res, next) => {
 	// if the token is valid we can access it on : req.payload
 	console.log('request payload is: ', req.payload)
 	res.status(200).json(req.payload)

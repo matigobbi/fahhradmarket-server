@@ -3,6 +3,8 @@ const { Schema, model } = require("mongoose");
 
 const postSchema = new Schema(
   {
+    likes: Array,
+    owner: String,
     imageUrl: String,  
     title: String,
     type: String,

@@ -20,13 +20,13 @@ export default function Login() {
 		axios.post(`${API_URL}/auth/login`, requestBody)
 			.then(response => {
 				// redirect to projects
-				console.log('i have a token mothafukkas')
+				console.log('you have a token')
 				const token = response.data.authToken
 				// store the token
 				storeToken(token)
 				verifyStoredToken()
 					.then(() => {
-						// redirect to projects
+						// redirect to home
 						navigate('/')
 					})
 			})
@@ -45,17 +45,17 @@ export default function Login() {
 			<form className="form" onSubmit={handleSubmit}>
 
 				<label htmlFor="email">Email: </label>
-				<input type="text" value={email} onChange={handleEmail} />
+				<input className="input text" type="text" value={email} onChange={handleEmail} />
 
 				<label htmlFor="password">Password: </label>
-				<input type="password" value={password} onChange={handlePassword} />
+				<input className="input text password" type="password" value={password} onChange={handlePassword} />
 
-				<button type="submit">Log In</button>
+				<button className="logInButton" type="submit">Log In</button>
 
 			{errorMessage && <h5>{errorMessage}</h5>}
 
 			<h3>Don't have an account?</h3>
-			<Link to='/signup'> <button>Signup</button></Link>
+			<Link  to='/signup'> <button>Signup</button></Link>
 			</form>
 		</>
 	)

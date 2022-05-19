@@ -37,7 +37,6 @@ export default function Signup() {
 
 	return (
 		<>
-			
 			<form className="form" onSubmit={handleSubmit}>
 
 				<label htmlFor="email">Email: </label>
@@ -56,12 +55,13 @@ export default function Signup() {
 				<input type="text" value={country} onChange={handleCountry} />
 
 				<button type="submit">Sign Up</button>
-			</form>
+			
 
 			{errorMessage && <h5>{errorMessage}</h5>}
 
 			<h3>Already have an account?</h3>
-			<Link to='/login'>Login</Link>
+			<Link to='/login'><button>Login</button></Link>
+			</form>
 		</>
 	)
 }

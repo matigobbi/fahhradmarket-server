@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import HomePage from './pages/HomePage';     
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';    
-import CreatePost from './pages/CreatePost';   
-import { Routes, Route } from "react-router-dom"; 
+import CreatePost from './pages/CreatePost';
+import Profile from './pages/Profile';      
+import { Routes, Route, Link } from "react-router-dom"; 
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { AuthContext } from './context/auth.context' 
@@ -29,14 +30,21 @@ function App() {
 
   return (<>
       <Navbar/>
-      {isLoggedIn && (<p className="logout-btn">
-    <button  onClick={logoutUser}>Log out</button> </p>)}
+      <div >
+        <div className="topBarHomePage bg-green">
+          <h1 className="titleTopBar">Fahrrad Market </h1>
+          {isLoggedIn ? (<><p className="greeting">Hello, {user.name}</p><p>
+          <button className="logOutButtonTopPage" onClick={logoutUser}>Log out</button> </p></>) : (<Link to='/login'> <button className="loginButton">LogIn</button></Link>)}
+        </div>
+      </div>
       <Routes>
-        <Route exact path="/" element={<HomePage posts={Posts}/>} />
+        <Route exact path="/" element={<HomePage posts={Posts} user={user}/>} />
+        <Route exact path="/Profile" element={<Profile posts={Posts}/>} />
         <Route exact path="/LogIn" element={<LogIn />} />
         <Route exact path="/SignUp" element={<SignUp />} />
-        <Route exact path="/CreatePost" element={<CreatePost />} />  
+        <Route exact path="/CreatePost" element={<CreatePost user={user}/>} />  
         <Route exact path="/:_id" element={<PostDetails posts={Posts}/>} />
+        <Route exact path="/Profile/:_id" element={<PostDetails posts={Posts}/>} />
       </Routes>
       </>
   )

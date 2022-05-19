@@ -43,6 +43,26 @@ router.post('/posts', (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.put('/:id/addlike', (req, res, next) => {
+  const [ ...likes]  = req.body
+  console.log(likes)
+  Post.findByIdAndUpdate(req.params.id, {
+  likes
+  })
+    .then(project => {
+      res.status(200).json(project)
+    })
+    .catch(err => next(err))
+});
+
+router.delete('/posts/:id', (req, res, next) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(200).json({ message: 'post deleted' })
+    })
+    .catch(err => next(err))
+});
+
 
 
 
