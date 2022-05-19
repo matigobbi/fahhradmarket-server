@@ -67,7 +67,7 @@ function CreatePost (props){
       .catch(err => console.log("Error while adding the new movie: ", err));
   };
  
-  return ( <>{props.user? (
+  return ( <>
     <div>
       <form className="form" onSubmit={handleSubmit}>
         <label>Title *</label>
@@ -148,7 +148,7 @@ function CreatePost (props){
  
         <button type="submit">Create new Post</button>
       </form>
-    </div>) : (<> This page is only for Logged in users ¯\_(ツ)_/¯</>)}
+    </div>
     </>
   );
 }

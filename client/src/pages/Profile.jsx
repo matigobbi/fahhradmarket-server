@@ -24,7 +24,7 @@ const deleteProject = (key) => {
 }
 
   return <>
-  {user? (<>
+  <>
   <h1 >Profile page</h1>
   <div className="containerProfile">
     <div className="itemProfile">
@@ -54,7 +54,7 @@ const deleteProject = (key) => {
       ))}</div>
     </div>
   </div>
-  </>):(<> This page is only for Logged in users ¯\_(ツ)_/¯</>)
-}
+  </>
+
   </>
 };
