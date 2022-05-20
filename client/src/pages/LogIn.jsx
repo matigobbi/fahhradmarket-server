@@ -17,7 +17,7 @@ export default function Login() {
 	const handleSubmit = e => {
 		e.preventDefault()
 		const requestBody = { email, password }
-		axios.post(`/auth/login`, requestBody)
+		axios.post(`${API_URL}/auth/login`, requestBody)
 			.then(response => {
 				// redirect to projects
 				console.log('you have a token')
@@ -50,7 +50,7 @@ export default function Login() {
 				<label htmlFor="password">Password: </label>
 				<input className="input text password" type="password" value={password} onChange={handlePassword} />
 
-				<button className="logInButton" type="submit">Log In</button>
+				<button className="logInButton1" type="submit">Log In</button>
 
 			{errorMessage && <h5>{errorMessage}</h5>}
 

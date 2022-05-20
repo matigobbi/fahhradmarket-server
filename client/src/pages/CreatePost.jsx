@@ -10,6 +10,7 @@ import service from "../service";
 function CreatePost (props){
   const navigate = useNavigate()
   const owner = (props.user? props.user._id : "")
+  const owneremail = (props.user? props.user.email : "")
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -45,7 +46,7 @@ function CreatePost (props){
     e.preventDefault();
  
     service
-      .createPost({ owner, title, price, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
+      .createPost({ owner,owneremail, title, price, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
       .then(res => {
         // console.log("added new movie: ", res);
  
@@ -67,17 +68,17 @@ function CreatePost (props){
       .catch(err => console.log("Error while adding the new movie: ", err));
   };
  
-  return ( <>
+  return ( <>{props.user? (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        <label>Title *</label>
+        <b>Title *</b>
         <input type="text" name="title" value={title} 
           onChange={(e) => setTitle(e.target.value)}/>
-        <label>Price *</label>
+        <b>Price *</b>
         <input type="number" min="0.00" max="10000.00" step="5" name="price" value={price} 
           onChange={(e) => setPrice(e.target.value)}/>
 
-        <label htmlFor="type">Type of bike:</label>
+        <b htmlFor="type">Type of bike:</b>
 
         <select id="type" name="type" value={type} 
           onChange={(e) => setType(e.target.value)}>
@@ -89,7 +90,7 @@ function CreatePost (props){
         <option value="bmx">BMX</option>
         </select>
           
-        <label>Frame Size</label>
+        <b>Frame Size</b>
         <select id="framesize" name="framesize" value={framesize} 
           onChange={(e) => setFramesize(e.target.value)}>
         <option value="-38">-38cms (xxs)</option>
@@ -107,7 +108,7 @@ function CreatePost (props){
         <option value="+60">+60cms (XL)</option>
         </select>
 
-        <label>Frame Material</label>
+        <b>Frame Material</b>
         <select type="text" name="framematerial" value={framematerial} 
           onChange={(e) => setFramematerial(e.target.value)}>
         <option value="steel">Steel </option>
@@ -116,39 +117,39 @@ function CreatePost (props){
         <option value="titanium/magnesium">Titanum/magnesium</option>
         </select>      
         <div className='formAgrup'>
-          <label>Brakes
+          <b>Brakes
             <input type="text" name="brakes" value={brakes} 
               onChange={(e) => setBrakes(e.target.value)}/>
-          </label>
-          <label>Tubes
+          </b>
+          <b>Tubes
             <input type="tubes" name="tubes" value={tubes} 
               onChange={(e) => setTubes(e.target.value)}/>
-          </label>
-          <label>Years Old
+          </b>
+          <b>Years Old
             <input type="years" name="years" value={years} 
               onChange={(e) => setYears(e.target.value)}/>
-          </label>
-          <label>Zip Code
+          </b>
+          <b>Zip Code
           <input type="zipcode" name="zipcode" value={zipcode} 
             onChange={(e) => setZipcode(e.target.value)}/>
-          </label>
-          <label>City
+          </b>
+          <b>City
           <input type="city" name="city" value={city} 
             onChange={(e) => setCity(e.target.value)}/>   
-          </label>
+          </b>
         </div>
-        <label>Description *</label>
+        <b>Description *</b>
         <textarea type="text" name="description" value={description}
           onChange={(e) => setDescription(e.target.value)} />
 
-        <label>Upload a file *</label>
+        <b>Upload a file *</b>
         <input type="file" onChange={(e) => handleFileUpload(e)} />
         {/* <input type="file" onChange={(e) => handleFileUpload(e)} />
         <input type="file" onChange={(e) => handleFileUpload(e)} /> */}
  
-        <button type="submit">Create new Post</button>
+        <button type="submit"><b>Create new Post</b></button>
       </form>
-    </div>
+    </div>) : (<div className="errormessage"> This page is only for Logged in users <div>¯\_(ツ)_/¯</div> </div>)}
     </>
   );
 }

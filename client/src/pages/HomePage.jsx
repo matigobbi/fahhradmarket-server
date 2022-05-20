@@ -8,16 +8,14 @@ const API_URL = "http://localhost:5005";
 
 export default function HomePage(props) {
   const [query, setQuery] = useState("")
-  const [priceQuery, setPriceQuery] =useState("")
+  const [selectQuery, setSelectQuery] =useState("")
 
-
-	
 	const handleInputChange = event => {
     setQuery(event.target.value)
     console.log(query)
 	}
 	const handleChange = event => {
-		setPriceQuery(event.target.value)
+		setSelectQuery(event.target.value)
 	}
 
 
@@ -31,21 +29,25 @@ export default function HomePage(props) {
 							})
 							.catch(err => console.log(err))
 	}
+	const postsReversed = [...props.posts.slice().reverse()]
+	// this dont work because this is no making a copy.
+	// const reversed = props.posts.reversed() 
+	// console.log(reversed)
 
-	const filtered = props.posts
-															.filter(posts => {
-																if(priceQuery=="-99"){ return posts.price < "99"}
-																if (priceQuery=="100 - 199"){ return posts.price > "100" && posts.price < "199"}
-																if (priceQuery=="200 - 399"){ return posts.price > "200" && posts.price < "399"}
-																if (priceQuery=="+400"){ return posts.price > "400"}
-																if(priceQuery=="Steel"){return posts.framematerial.includes("steel")}
-																if(priceQuery=="Aluminum"){return posts.framematerial.includes("aluminum")}
-																if(priceQuery=="Carbon"){return posts.framematerial.includes("carbon") || posts.framematerial.includes("tita")}
-																if(priceQuery=="all") {return posts}
-																else {return posts}
+	const filtered = postsReversed
+															   .filter(posts => {
+																		if (selectQuery=="-99"){ return posts.price < "99"}
+																		if (selectQuery=="100 - 199"){ return posts.price > "100" && posts.price < "199"}
+																		if (selectQuery=="200 - 399"){ return posts.price > "200" && posts.price < "399"}
+																		if (selectQuery=="+400"){ return posts.price > "400"}
+																		if (selectQuery=="Steel"){return posts.framematerial.includes("steel")}
+																		if (selectQuery=="Aluminum"){return posts.framematerial.includes("aluminum")}
+																		if (selectQuery=="Carbon"){return posts.framematerial.includes("carbon") || posts.framematerial.includes("tita")}
+																		if (selectQuery=="all") {return posts}
+																		else {return posts}
 })
-															.filter(posts => {
-		return posts.title.toLowerCase().includes(query.toLowerCase())
+																.filter(posts => {
+																		return posts.title.toLowerCase().includes(query.toLowerCase())
 });    
 
     return <>    
@@ -70,7 +72,7 @@ export default function HomePage(props) {
 				<Link to={post._id}> <img className="imgPost" src={post.imageUrl}/> </Link>
 					<div className="postContent">
 						<p className="postTitle">{post.title}</p>
-						<p className="postdress"> {post.zipcode}, {post.city}</p>
+						<p className="postAdress"> {post.zipcode}, {post.city}</p>
 						<div className="pricenAndLike">
 							<p className="postPrice">€ {post.price}</p>
 							<button className="likeButton" onClick={() => handlePushLike(post._id)}> ❤</button>

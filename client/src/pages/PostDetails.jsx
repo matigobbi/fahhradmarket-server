@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom" 
+import React from 'react'
 
 export default function Postdetails (props) {
-
   const params = useParams()
   const id = params._id
+  const date =  (!props.user? "" : new Intl.DateTimeFormat('en-GB', { year: 'numeric', year: "2-digit", month: '2-digit', day: '2-digit' }).format(props.user.iat))
 
   const post= props.posts.find(post => post._id === id)
   return <> 
@@ -14,24 +15,28 @@ export default function Postdetails (props) {
 					<div className="postContent">
             <div className="containerInfo title">
               <h1 className="postTitle">{post.title}</h1>
+              <p>{!post.zipcode ? <></> : <span> Location: {post.zipcode}</span>},{post.city} </p>
               <p className="price">{!post.price ? <></> :<span className="postPrice">€ {post.price}</span>}</p>
             </div>
-            <div className="containerInfo">
-              {!post.type ? <></> :<p>Type<p>{post.type}</p></p>}
-              {!post.framezise ? <></> :<p>Frame Size<p>{post.framezise}</p></p>}
-              {!post.framematerial ? <></> :<p>Frame Material<p>{post.framematerial}</p></p>}
-              {!post.brakes ? <></> :<p>Brakes<p>{post.brakes}</p></p>}
-              {!post.tubes ? <></> :<p>Tubes<p>{post.tubes}</p></p>}
+            <div className="containerInfo table">
+              {!post.type ? <></> :<div><h3>Type</h3><p>{post.type}</p></div>}
+              {!post.framezise ? <></> :<div ><h3>Frame Size</h3><p>{post.framezise}</p></div>}
+              {!post.framematerial ? <></> :<div ><h3>Frame Material</h3><p>{post.framematerial}</p></div>}
+              {!post.brakes ? <></> :<div><h3>Brakes</h3><p>{post.brakes}</p></div>}
+              {!post.tubes ? <></> :<div><h3>Tubes</h3><p>{post.tubes}</p></div>}
+            </div>
+            <div className="description">
+              {!post.description ? <></> :<div><h3>Description</h3><p>{post.description}</p></div>}
+              {!post.years ? <></> :<p>How old is the bike?<b> {post.years} years</b></p>}
             </div>
             <div>
-              {!post.description ? <></> :<p>Description<p>{post.description}</p></p>}
+            {!post.owner? <></> : 
+              <div> <strong>If you are interested in this bike just contact me:</strong>
+                <div>{post.owneremail}</div>
+              </div>}
             </div>
-            <div className="containerInfo">
-              {!post.years ? <></> :<p>How old is the bike?<span> {post.years} years</span></p>}
-              <p>{!post.zipcode ? <></> : <span> Located in: {post.zipcode}</span>},{post.city} 🌍</p>
-            </div>
-					</div>
+          </div>
 				</div>
-			</li>}
+			</li>} 
   </>
 };

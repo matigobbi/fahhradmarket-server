@@ -5,6 +5,7 @@ const postSchema = new Schema(
   {
     likes: Array,
     owner: String,
+    owneremail: String,
     imageUrl: String,  
     title: String,
     type: String,

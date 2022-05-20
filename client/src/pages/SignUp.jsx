@@ -13,11 +13,10 @@ export default function Signup() {
 	const [errorMessage, setErrorMessage] = useState(undefined);
 
 	const navigate = useNavigate()
-
 	const handleSubmit = e => {
 		e.preventDefault()
 		const requestBody = { email, password, name, birth, country }
-		axios.post(`/auth/signup`, requestBody)
+		axios.post(`${API_URL}/auth/signup`, requestBody)
 			.then(response => {
 				// redirect to login
 				navigate('/login')

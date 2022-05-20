@@ -15,7 +15,7 @@ const navigate = useNavigate()
 
 
 const deleteProject = (key) => {
-  axios.delete(`/posts/${key}`)
+  axios.delete(`${API_URL}/posts/${key}`)
     .then(() => {
       // redirect 
       navigate('/')
@@ -24,37 +24,37 @@ const deleteProject = (key) => {
 }
 
   return <>
-  <>
-  <h1 >Profile page</h1>
+  {user? (<>
+  <h1 >Profile page:</h1>
   <div className="containerProfile">
     <div className="itemProfile">
-      <p>Your Information:</p>
-      <p>User Id: {user._id }</p>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Country: {user.country}</p>
-      <p>Birth: {user.birth}</p>
+      <h3>Your Information:</h3>
+      <b>User Id:</b><p> {user._id }</p>
+      <b>Name:</b><p> {user.name}</p>
+      <b>Email:</b><p> {user.email}</p>
+      <b>Country:</b><p> {user.country}</p>
+      <b>Birth:</b><p> {user.birth}</p>
     </div>
     <div className="itemProfile">
-      <p>Your posts</p>
+      <h3>Your posts:</h3>
       <div>{yourPosts.map((post)=>(
         <>
           <p key={post._id}>{post.title}
-          <button onClick={() => deleteProject(post._id)}>Delete</button></p>
+          <button className="delete" onClick={() => deleteProject(post._id)}>Delete</button></p>
         </>
       ))}</div>
       </div>
       <div className="itemProfile">
-        <p>Your Likes</p>
+        <h3>Your Likes:</h3>
         <div>{yourLikes.map((post)=>(
           <>
-          <Link className='linksProfile' to={post._id}><p  key={post._id}>{post.title}
-          <span> Price € {post.price}</span> </p></Link>
+          <Link className='linksProfile' to={post._id}><p key={post._id}>{post.title}
+          <span> Price <b>€ {post.price} </b></span> </p></Link>
           </>
       ))}</div>
     </div>
   </div>
-  </>
-
+  </>):(<div className="errormessage">    This page is only for Logged in users <div>¯\_(ツ)_/¯</div> </div>)
+}
   </>
 };

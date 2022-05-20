@@ -6,9 +6,9 @@ const Post = require('../models/Post.model');
 const fileUploader = require("../config/cloudinary.config");
 
 
-// router.get("/", (req, res, next) => {
-//   res.json("All good in here");
-// });
+router.get("/", (req, res, next) => {
+  res.json("All good in here");
+});
 
 router.get("/posts", (req, res, next) => {
   Post.find()

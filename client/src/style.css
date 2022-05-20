@@ -9,6 +9,14 @@ body {
   background-color: whitesmoke;
   font-family: 'Titillium Web', sans-serif;
 }
+.errormessage{
+text-align: center;
+margin: 100px 0;
+font-weight: 300;
+color: rgb(61, 78, 56);
+font-size: 20px;
+}
+
 
 main {
   display: flex;
@@ -24,7 +32,12 @@ gap: 15px;
 border-radius: 25px;
 }
 .titleTopBar{
+  text-decoration: none;
   color: #F0FDF0;
+  
+}
+.linktitle{
+  text-decoration:none;
 }
 .bg-green {
   color: #fff;
@@ -65,6 +78,12 @@ aside {
   padding: 0;
 }
 
+.postItem:hover{
+  outline: none;
+  box-shadow: 2px 3px 9px 0px rgba(164, 170, 163, 0.63);
+  border-radius: 20px;
+  }
+
 .postItem {
   display: flex;
   padding: 1rem;
@@ -76,13 +95,50 @@ position: absolute;
 width: 50%;
 left: 25%;
 }
+.titlePostDetail{
+
+  width:calc(100% / 3 )
+}
 .containerInfo{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-content: center;
+  flex-wrap: wrap;
   gap: 30px;
+  
 }
+.containerInfo.table h3{
+margin-bottom: 0;
+font-size: 14px;
+}
+.description{
+  background-color: #8fe79b;
+  border-radius: 15px;
+  padding: 0 15px;
+  box-shadow:0px 7px 13px 0px #9eb7a2;
+  margin-bottom: 30px;
+}
+
+.description h3{
+  margin: 0;
+  margin-top: 10px;
+}
+
+.description p{
+  margin-top: 5px;
+}
+
+.containerInfo.table p{
+margin-top: 0;
+color: #273329;
+font-size: 22px;
+}
+.delete{ 
+  color: red;
+}
+
+
 .containerInfo.title{
   display: flex;
   flex-direction: row;
@@ -95,15 +151,19 @@ left: 25%;
   flex-direction: row;
   align-items: flex-start;
   flex-wrap:wrap;
-  gap: 70px;
+  gap: 40px;
 }
 .itemProfile{
-  background-color: #53a149;
+  background-color: #a3d39b;
   text-decoration: none;
   box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
   border-radius: 10px;
   padding: 6px 20px;
-  
+}
+.itemProfile h3{
+  text-align: center;
+  background-color: #29A89E;
+  border-radius: 5px;
 }
 @media screen and (max-width:45rem){
   .containerItemDetail{
@@ -134,6 +194,7 @@ left: 25%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 0px;
 }
 
 .imgPost{
@@ -143,8 +204,9 @@ left: 25%;
 }
 .postTitle {
   color: #273329;
-  font-size: 1.1rem;
-  font-weight: 100px;
+  font-size: 20px;
+  font-weight: 200px;
+  
 }
 
 .postPrice {
@@ -152,21 +214,24 @@ left: 25%;
   flex: 1 1 auto;
   font-size: 1.475rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;
+
+
 }
 .postContent{
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  padding: 1rem;
+  padding: 10px 25px 25px;
+
 }
 .form{
   display: flex;
   flex-direction: column;
   margin: 0 61px;
 }
+
 textarea{
-  border:none;
+border:none;
 padding: 10px;
 font-size: 20px;
 color: rgb(40, 92, 25);
@@ -202,8 +267,8 @@ button.logInButton{
   margin: 30px 0;
 }
 .postAdress{
-  color: rgb(90, 90, 90);
-  
+  color: #797979;
+  margin-top: -15px;
 }
 
 .container-navbar{

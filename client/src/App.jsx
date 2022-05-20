@@ -17,7 +17,7 @@ function App() {
   const [Posts, setPosts] = useState([])
 
 	const getAllPosts = () => {
-		axios.get(`/posts`)
+		axios.get(`${API_URL}/posts`)
 			.then(response => {
 				//  console.log(response)
 				setPosts(response.data)
@@ -32,7 +32,7 @@ function App() {
       <Navbar/>
       <div >
         <div className="topBarHomePage bg-green">
-          <h1 className="titleTopBar">Fahrrad Market </h1>
+          <Link className="linktitle" to="/"><h1 className="titleTopBar">Fahrrad Market </h1></Link>
           {isLoggedIn ? (<><p className="greeting">Hello, {user.name}</p><p>
           <button className="logOutButtonTopPage" onClick={logoutUser}>Log out</button> </p></>) : (<Link to='/login'> <button className="loginButton">LogIn</button></Link>)}
         </div>
@@ -43,7 +43,7 @@ function App() {
         <Route exact path="/LogIn" element={<LogIn />} />
         <Route exact path="/SignUp" element={<SignUp />} />
         <Route exact path="/CreatePost" element={<CreatePost user={user}/>} />  
-        <Route exact path="/:_id" element={<PostDetails posts={Posts}/>} />
+        <Route exact path="/:_id" element={<PostDetails posts={Posts} user={user}/>} />
         <Route exact path="/Profile/:_id" element={<PostDetails posts={Posts}/>} />
       </Routes>
       </>
