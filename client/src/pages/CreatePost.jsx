@@ -67,6 +67,7 @@ function CreatePost (props){
       })
       .catch(err => console.log("Error while adding the new movie: ", err));
   };
+  
  
   return ( <>{props.user? (
     <div>
