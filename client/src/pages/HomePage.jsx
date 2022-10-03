@@ -1,7 +1,6 @@
 import "../style.css"
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
-import { AuthContext } from "../context/auth.context"
 import { Link, Navigate } from "react-router-dom"
 const API_URL = "http://localhost:5005";
 
@@ -15,24 +14,20 @@ export default function HomePage(props) {
     console.log(query)
 	}
 	const handleChange = event => {
+		console.log(event)
 		setSelectQuery(event.target.value)
 	}
-
 
 	const handlePushLike = (postId) => {
 		const foundedPost = props.posts.find(post => post._id === postId)
 		props.user && foundedPost.likes.push(`${props.user._id}`)
 		const requestBody= foundedPost.likes
 		axios.put(`${API_URL}/${postId}/addlike`, requestBody)
-							.then(()=> {
-
-							})
-							.catch(err => console.log(err))
+		props.getAllPosts()
 	}
+
+
 	const postsReversed = [...props.posts.slice().reverse()]
-	// this dont work because this is no making a copy.
-	// const reversed = props.posts.reversed() 
-	// console.log(reversed)
 
 	const filtered = postsReversed
 															   .filter(posts => {
@@ -50,7 +45,7 @@ export default function HomePage(props) {
 																		return posts.title.toLowerCase().includes(query.toLowerCase())
 });    
 
-    return <>    
+    return (<>    
 		<input className="search-field" type="search" placeholder="Search..." onChange={handleInputChange}/>
 		<div>
 			<button className="searchButtons" value="all" onClick={handleChange}>All</button>
@@ -64,7 +59,7 @@ export default function HomePage(props) {
 			<button className="searchButtons" value="Aluminum" onClick={handleChange}> Aluminum</button>
 			<button className="searchButtons" value="Carbon" onClick={handleChange}> Carbon // Titanium</button>
 		</div>
-	    {/* { console.log(props.posts)} */}
+
       {!props.posts ? (<>Loading...</>) : 
 		(<div className="postCards"> {filtered.map((post)=>(
 			<li key= {post._id} className='postItem'>
@@ -75,15 +70,14 @@ export default function HomePage(props) {
 						<p className="postAdress"> {post.zipcode}, {post.city}</p>
 						<div className="pricenAndLike">
 							<p className="postPrice">€ {post.price}</p>
-							<button className="likeButton" onClick={() => handlePushLike(post._id)}> ❤</button>
+							{!props.user? <></> : <button className="likeButton" onClick={() => {handlePushLike(post._id)}}> {post.likes.includes(props.user._id) ? <p >Liked</p> : <p>❤</p>} </button>}
 						</div>
 					</div>
 				</div>
 			</li>
 		))} 
 		</div>
-		)}
-		
-    </>
+		)} 
+    </>)
 		
 };

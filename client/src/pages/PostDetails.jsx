@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom" 
 import React from 'react'
+import RelatedPosts from "./../components/RelatedPosts"
 
 export default function Postdetails (props) {
   const params = useParams()
@@ -7,7 +8,7 @@ export default function Postdetails (props) {
   const date =  (!props.user? "" : new Intl.DateTimeFormat('en-GB', { year: 'numeric', year: "2-digit", month: '2-digit', day: '2-digit' }).format(props.user.iat))
 
   const post= props.posts.find(post => post._id === id)
-  return <> 
+  return <div className="bigcontainer"> 
   {!post ? (<>Loading...</>) :  
   <li key= {post._id} className="containerItemDetail">
 				<div className="post">
@@ -38,5 +39,6 @@ export default function Postdetails (props) {
           </div>
 				</div>
 			</li>} 
-  </>
+      <RelatedPosts posts={props.posts} viewedPost={post}/>
+  </div>
 };

@@ -88,10 +88,12 @@ aside {
   display: flex;
   padding: 1rem;
 }
+
+
 .containerItemDetail {
   display: flex;
   padding: 1rem ;
-position: absolute;
+  position: relative;
 width: 50%;
 left: 25%;
 }
@@ -166,8 +168,12 @@ font-size: 22px;
 }
 @media screen and (max-width:45rem){
   .containerItemDetail{
-    width: 100%;
+  width: 100%;
   left: 0%;
+  }
+  .relatedPostItem{
+    width: 100%;
+    justify-content: space-between;
   }
 }
 
@@ -175,6 +181,7 @@ font-size: 22px;
   .postItem {
     width: 50%;
   }
+
 }
 @media screen and (min-width: 56rem){
   .postItem {
@@ -194,6 +201,14 @@ font-size: 22px;
   flex-direction: column;
   overflow: hidden;
   padding: 0px;
+  margin: 5px;
+}
+.relatedPostItem{
+  background-color: white;
+  border-radius: 0.55rem;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: row;
 }
 
 .imgPost{
@@ -212,9 +227,6 @@ font-size: 22px;
   color: green;
   flex: 1 1 auto;
   font-size: 1.475rem;
-  line-height: 1.5;
-
-
 }
 .postContent{
   display: flex;
@@ -222,6 +234,13 @@ font-size: 22px;
   flex-direction: column;
   padding: 10px 25px 25px;
 
+}
+
+.postContent .related {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 0px 25px 0px;
 }
 .form{
   display: flex;
@@ -327,4 +346,11 @@ button:hover{
 }
 .linksProfile:hover{
 color: #00A5D9;
+}
+ .liked {
+  background-color: #273329;
+}
+.bigcontainer{
+  display: flex;
+  flex-direction: column;
 }

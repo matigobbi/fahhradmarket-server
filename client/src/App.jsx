@@ -38,7 +38,7 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route exact path="/" element={<HomePage posts={Posts} user={user}/>} />
+        <Route exact path="/" element={<HomePage getAllPosts={getAllPosts} posts={Posts} user={user}/>} />
         <Route exact path="/Profile" element={<Profile posts={Posts}/>} />
         <Route exact path="/LogIn" element={<LogIn />} />
         <Route exact path="/SignUp" element={<SignUp />} />

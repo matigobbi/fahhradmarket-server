@@ -49,7 +49,6 @@ function CreatePost (props){
       .createPost({ owner,owneremail, title, price, description, imageUrl, type, framesize, framematerial, brakes, tubes, years, zipcode, city })
       .then(res => {
         // console.log("added new movie: ", res);
- 
         // Reset the form
         setTitle("");
         setPrice("");

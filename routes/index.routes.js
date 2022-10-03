@@ -12,14 +12,15 @@ router.get("/", (req, res, next) => {
 
 router.get("/posts", (req, res, next) => {
   Post.find()
-    .then(postsFromDB => res.status(200).json(postsFromDB))
+    .then(postsFromDB => res.json(postsFromDB))
     .catch(err => next(err));
 });
 
-router.get("/:id", (req, res , next) => {
-  Post.find()
-} 
-)
+// router.get("/:id", (req, res , next) => {
+//   Post.find()
+//   .then(postFromDB => res.json(postFromDB))
+//   .catch(err => next(err))
+// });
 
 router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
   // console.log("file is: ", req.file)
