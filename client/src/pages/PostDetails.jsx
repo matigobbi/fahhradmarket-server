@@ -6,8 +6,8 @@ export default function Postdetails (props) {
   const params = useParams()
   const id = params._id
   const date =  (!props.user? "" : new Intl.DateTimeFormat('en-GB', { year: 'numeric', year: "2-digit", month: '2-digit', day: '2-digit' }).format(props.user.iat))
-
   const post= props.posts.find(post => post._id === id)
+  
   return <div className="bigcontainer"> 
   {!post ? (<>Loading...</>) :  
   <li key= {post._id} className="containerItemDetail">
