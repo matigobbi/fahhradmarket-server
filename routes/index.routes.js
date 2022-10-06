@@ -44,6 +44,7 @@ router.post('/posts', (req, res, next) => {
     .catch(err => next(err));
 });
 
+
 router.put('/:id/addlike', (req, res, next) => {
   const [ ...likes]  = req.body
   console.log(likes)
@@ -59,6 +60,7 @@ router.put('/:id/addlike', (req, res, next) => {
 router.delete('/posts/:id', (req, res, next) => {
   Post.findByIdAndDelete(req.params.id)
     .then(() => {
+      console.log("bla")
       res.status(200).json({ message: 'post deleted' })
     })
     .catch(err => next(err))
