@@ -55,8 +55,8 @@ router.put('/:id/addlike', (req, res, next) => {
   Post.findByIdAndUpdate(req.params.id, {
     likes,
   })
-    .then((project) => {
-      res.status(200).json(project)
+    .then(() => {
+      res.status(200).json("updated")
     })
     .catch((err) => next(err))
 })
